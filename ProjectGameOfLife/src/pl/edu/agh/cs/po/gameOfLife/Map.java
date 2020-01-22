@@ -9,12 +9,12 @@ public class Map {
     private Vector2d lowLeft = new Vector2d(0, 0);
     private Vector2d upRight = new Vector2d(0, 0);
     private MapVisualizer mapVisualizer = new MapVisualizer(this);
-    private int simulationSpeed;
-    public Map(List<Integer> toSurvive, List<Integer> toRevive, List<Vector2d> initialCells, int simulationSpeed)
+    private int simulationDelay;
+    public Map(List<Integer> toSurvive, List<Integer> toRevive, List<Vector2d> initialCells, int simulationDelay)
     {
         this.toSurvive = toSurvive;
         this.toRevive = toRevive;
-        this.simulationSpeed = simulationSpeed;
+        this.simulationDelay = simulationDelay;
         for(Vector2d cell: initialCells)
         {
             this.cells.put(cell, new Cell(cell, this));
@@ -107,7 +107,7 @@ public class Map {
     public void oneDayGone() throws InterruptedException
     {
         System.out.println(this.toString());
-        Thread.sleep(this.simulationSpeed);
+        Thread.sleep(this.simulationDelay);
         this.killAndReviveAllPossible();
     }
 }
